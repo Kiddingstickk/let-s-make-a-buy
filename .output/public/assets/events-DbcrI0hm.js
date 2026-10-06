@@ -1,0 +1,1 @@
+import{D as e}from"./storefront-Dj0kKDGF.js";import{r as t}from"./home-sections-BB_SNLzQ.js";var n=e(),r=()=>(0,n.jsx)(`main`,{children:(0,n.jsx)(t,{full:!0})});export{r as component};
