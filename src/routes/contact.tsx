@@ -1,0 +1,3 @@
+import { createFileRoute } from "@tanstack/react-router";
+import { Newsletter, SiteFooter } from "@/components/storefront";
+export const Route = createFileRoute("/contact")({ head: () => ({ meta: [{ title: "Contact — Let’s Make a Buy" }, { name: "description", content: "Visit or contact Let’s Make a Buy in Kalga, Parvati Valley." }, { property: "og:title", content: "Contact — Let’s Make a Buy" }, { property: "og:description", content: "Visit or contact Let’s Make a Buy in Kalga, Parvati Valley." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: () => <main className="pt-16"><SiteFooter/><Newsletter/></main> });
