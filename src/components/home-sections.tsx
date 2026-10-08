@@ -9,7 +9,8 @@ import { BookingDialog,  ProductCard } from "@/components/storefront";
 
 import { Button } from "@/components/ui/button";
 
-import { crafts, events } from "@/lib/store-data";
+import { crafts } from "@/lib/store-data";
+import { getEvents, type StudioEvent } from "@/lib/events";
 import { getProducts, type Product } from "@/lib/products";
 
 import { Reveal, StaggerItem, StaggerReveal } from "@/components/luxury-motion";
@@ -119,20 +120,69 @@ export function HandStory() {
 }
 
 
+function formatEventDate(start: string, end: string | null) {
+  const startDate = new Date(`${start}T00:00:00`);
+
+  const startMonth = startDate.toLocaleDateString("en-US", {
+    month: "long",
+  });
+
+  const startDay = startDate.toLocaleDateString("en-US", {
+    day: "2-digit",
+  });
+
+  if (!end || end === start) {
+    return `${startMonth} ${startDay}`;
+  }
+
+  const endDate = new Date(`${end}T00:00:00`);
+
+  const endMonth = endDate.toLocaleDateString("en-US", {
+    month: "long",
+  });
+
+  const endDay = endDate.toLocaleDateString("en-US", {
+    day: "2-digit",
+  });
+
+  if (startMonth === endMonth) {
+    return `${startMonth} ${startDay}–${endDay}`;
+  }
+
+  return `${startMonth} ${startDay}–${endMonth} ${endDay}`;
+}
+
+
+
 export function EventsList({ full = false }: { full?: boolean }) {
+  const [events, setEvents] = useState<StudioEvent[]>([]);
+
+  useEffect(() => {
+    getEvents()
+      .then((data) => {
+        console.log("SUPABASE EVENTS:", data);
+        setEvents(data);
+      })
+      .catch((error) => {
+        console.error("SUPABASE EVENTS ERROR:", error);
+      });
+  }, []);
+
+  const visibleEvents = full ? events : events.slice(0, 3);
+
   return (
     <section className="mx-auto max-w-[1450px] px-5 py-20 md:px-[120px] md:py-24">
       <SectionTitle>Events &amp; Sessions</SectionTitle>
 
       <div className="mt-20 space-y-24 md:mt-24 md:space-y-32">
-        {events.map((event, index) => (
+        {visibleEvents.map((event, index) => (
           <Reveal
             key={event.id}
             direction={index % 2 === 0 ? "left" : "right"}
           >
             <article className="grid grid-cols-2 items-center gap-5 md:gap-[60px]">
               <img
-                src={event.image}
+                src={event.image_url ?? ""}
                 alt={event.title}
                 className={`h-auto w-full object-cover md:h-[281px] md:w-[281px] ${
                   index % 2 ? "order-2 md:justify-self-end" : ""
@@ -141,9 +191,9 @@ export function EventsList({ full = false }: { full?: boolean }) {
               />
 
               <div className="min-w-0 max-w-xl justify-self-center text-center">
-                <p className="font-['Modern_Sans'] text-[10px] text-primary md:text-[16px]">
-                  October {17 + index} — {18 + index}
-                </p>
+              <p className="font-['Modern_Sans'] text-[10px] text-primary md:text-[16px]">
+                {formatEventDate(event.event_date, event.end_date)}
+              </p>
 
                 <h3 className="mt-3 font-display text-2xl uppercase leading-[.95] md:mt-5 md:text-[37px]">
                   {event.title}
@@ -154,12 +204,17 @@ export function EventsList({ full = false }: { full?: boolean }) {
                 </p>
 
                 <Reveal direction="up" className="mt-4 md:mt-8">
-                  <BookingDialog eventId={event.id}>
+                <a href={`/events/${event.slug}`}>
+                  <Button
+                    variant="outline"
+                    className="rounded-none bg-[#e0e0e0] text-black hover:bg-[#white]"
+                  >
                     <span className="font-display text-[10px] font-medium">
-                      {full ? "RESERVE YOUR SEAT" : "VIEW SESSION"}
+                      VIEW SESSION
                     </span>
-                    <ArrowRight />
-                  </BookingDialog>
+                    <ArrowRight className="size-4" />
+                  </Button>
+                </a>
                 </Reveal>
               </div>
             </article>
@@ -167,20 +222,23 @@ export function EventsList({ full = false }: { full?: boolean }) {
         ))}
       </div>
 
-      <Reveal
-        direction="up"
-        className="mt-16 text-center md:mt-20"
-      >
-        <Button asChild className="h-14 rounded-none px-10">
-          <Link to="/events">
-            VIEW ALL PROGRAMS
-            <ArrowRight />
-          </Link>
-        </Button>
-      </Reveal>
+      {!full && (
+        <Reveal
+          direction="up"
+          className="mt-16 text-center md:mt-20"
+        >
+          <Button asChild className="h-14 rounded-none px-10">
+            <Link to="/events">
+              VIEW ALL PROGRAMS
+              <ArrowRight />
+            </Link>
+          </Button>
+        </Reveal>
+      )}
     </section>
   );
 }
+
 
 
 

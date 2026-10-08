@@ -1,0 +1,1 @@
+import{D as e,i as t,n}from"./storefront-Dj0kKDGF.js";var r=e(),i=()=>(0,r.jsxs)(`main`,{className:`pt-16`,children:[(0,r.jsx)(t,{}),(0,r.jsx)(n,{})]});export{i as component};

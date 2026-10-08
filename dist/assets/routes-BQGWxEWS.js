@@ -1,0 +1,1 @@
+import{D as e,i as t,n}from"./storefront-Dj0kKDGF.js";import{a as r,i,n as a,r as o,t as s}from"./home-sections-BB_SNLzQ.js";var c=e();function l(){return(0,c.jsxs)(`main`,{children:[(0,c.jsx)(r,{}),(0,c.jsx)(a,{}),(0,c.jsx)(i,{}),(0,c.jsx)(o,{}),(0,c.jsx)(s,{}),(0,c.jsx)(n,{}),(0,c.jsx)(t,{})]})}export{l as component};
