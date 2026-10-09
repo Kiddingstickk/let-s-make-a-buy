@@ -1,4 +1,5 @@
 import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { SiteFooter } from "@/components/storefront";
 
 export const Route = createFileRoute("/events")({
   head: () => ({
@@ -34,5 +35,10 @@ export const Route = createFileRoute("/events")({
 });
 
 function EventsLayout() {
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <SiteFooter />
+    </>
+  );
 }

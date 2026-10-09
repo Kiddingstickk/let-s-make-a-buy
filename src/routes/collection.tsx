@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
-import { ProductCard } from "@/components/storefront";
+
+import { ProductCard , SiteFooter} from "@/components/storefront";
 import {
   Reveal,
   StaggerItem,
@@ -49,6 +50,7 @@ function CollectionPage() {
   const products = Route.useLoaderData();
 
   return (
+    <>
     <main className="mx-auto max-w-[1500px] overflow-hidden px-5 py-16 md:px-10 md:py-28">
       <div className="grid items-end gap-8 md:grid-cols-2">
         <Reveal direction="left">
@@ -75,5 +77,8 @@ function CollectionPage() {
         ))}
       </StaggerReveal>
     </main>
+
+    <SiteFooter />
+    </>
   );
 }

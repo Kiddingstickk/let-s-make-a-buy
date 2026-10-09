@@ -15,7 +15,7 @@ import { getProducts, type Product } from "@/lib/products";
 
 import { Reveal, StaggerItem, StaggerReveal } from "@/components/luxury-motion";
 
-export function Hero() { return <section className="mx-auto grid max-w-[1600px] gap-8 px-5 pb-16 pt-12 md:px-10 lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[.72fr_1.28fr] lg:grid-rows-[auto_1fr] lg:items-center lg:gap-10 lg:py-20"><Reveal direction="left" className="relative z-10 lg:-mr-56 lg:self-end"><h1 className="font-display text-[clamp(3.65rem,16vw,5rem)] uppercase leading-[.82] lg:text-[clamp(4rem,8.4vw,9rem)]">Born from the<br/>human hand</h1></Reveal><Reveal direction="right" className="w-[82%] justify-self-end lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:w-full"><img src={heroImage} alt="Handwoven dreamcatchers in a sunlit Himalayan studio" width={1600} height={1104} className="aspect-[4/3] w-full object-cover shadow-xl" /></Reveal><Reveal direction="left" delay={0.15} className="lg:col-start-1 lg:row-start-2 lg:self-start"><p className="max-w-[22rem] text-sm leading-7 lg:mt-20 lg:max-w-xl">Everything begins with a pair of hands. With patience, imagination, and a touch of instinct, simple materials become something worth holding. At Let’s Make a Buy, we celebrate the magic of making by hand, the craft, and the stories shaped into every piece.</p><Reveal direction="up" delay={0.2}><Button asChild variant="outline" className="mt-8 h-12 justify-self-end rounded-none border-foreground px-5 font-display text-base font-semibold lg:mt-10 lg:px-6 lg:text-lg"><Link to="/collection">Explore the Collection <ArrowRight /></Link></Button></Reveal></Reveal></section>; }
+export function Hero() { return <section className="mx-auto grid max-w-[1600px] gap-8 px-5 pb-16 pt-12 md:px-10 lg:min-h-[calc(100vh-5rem)] lg:grid-cols-[.72fr_1.28fr] lg:grid-rows-[auto_1fr] lg:items-center lg:gap-10 lg:py-20"><Reveal direction="left" className="relative z-10 lg:-mr-56 lg:self-end"><h1 className="font-display text-[clamp(3.65rem,16vw,5rem)] uppercase leading-[.82] lg:text-[clamp(4rem,8.4vw,9rem)]">Born from the<br/>human hand</h1></Reveal><Reveal direction="right" className="w-[82%] justify-self-end lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:w-full"><img src={heroImage} alt="Handwoven dreamcatchers in a sunlit Himalayan studio" width={1600} height={1104} className="aspect-[4/3] w-full object-cover shadow-xl" /></Reveal><Reveal direction="left" delay={0.15} className="lg:col-start-1 lg:row-start-2 lg:self-start"><p className="font-['Modern_Sans'] max-w-[22rem] text-[12px] leading-[1.5] lg:mt-20 lg:max-w-xl">Everything begins with a pair of hands. With patience, imagination, and a touch of instinct, simple materials become something worth holding. At Let’s Make a Buy, we celebrate the magic of making by hand, the craft, and the stories shaped into every piece.</p><Reveal direction="up" delay={0.2}><Button asChild variant="outline" className="mt-8 h-12 justify-self-end rounded-none border-foreground px-5 font-display text-base font-semibold lg:mt-10 lg:px-6 lg:text-lg"><Link to="/collection">Explore the Collection <ArrowRight /></Link></Button></Reveal></Reveal></section>; }
 
 export function Crafts() {
   return (
@@ -42,7 +42,7 @@ export function Crafts() {
                 {craft.name}
               </h3>
 
-              <p className="mt-2 max-w-52 text-xs leading-5 md:mx-auto md:text-sm">
+              <p className="mt-2 max-w-52 font-['Modern_Sans'] text-[15px] leading-[1.4] md:mx-auto">
                 {craft.note}
               </p>
             </article>
